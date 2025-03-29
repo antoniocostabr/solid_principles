@@ -1,23 +1,17 @@
 """ Main module for demonstrating the Dependency Inversion Principle (DIP) """
 
-from .concrete import ComputerFactoryImplementation
+from .interfaces import Computer
 from argparse import ArgumentParser
 
-def main(a: float, b: float, computer_type: str) -> float:
-    computer_factory = ComputerFactoryImplementation()
-    computer = computer_factory.create_computer(computer_type)
+def main(a: float, b: float, computer: Computer, computer_type: str) -> float:
     computed_value = computer.compute(a, b)
 
     print('Input values:', a, b)
     print('Computer type:', computer_type)
     print('Computed value:', computed_value)
 
-    print('Computer factory class:', computer_factory.__class__.__name__)
-    print('Computer factory super class:', computer_factory.__class__.__bases__)
-
     print('Computer class:', computer.__class__.__name__)
     print('Computer super class:', computer.__class__.__bases__)
-
 
 
 if __name__ == "__main__":
@@ -30,8 +24,15 @@ if __name__ == "__main__":
         choices=["sum", "product"], default="sum",
         help="Type of computation (sum or product)"
     )
-    args = parser.parse_args()
 
+    args = parser.parse_args()
     print(parser.description)
-    main(args.a, args.b, args.computer_type)
+
+    # dependency injection
+    from .concrete import ComputerFactoryImplementation
+    computer_factory = ComputerFactoryImplementation()
+    computer = computer_factory.create_computer(args.computer_type)
+
+    # main function
+    main(args.a, args.b, computer, args.computer_type)
     print("Main function executed.")

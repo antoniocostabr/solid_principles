@@ -25,9 +25,9 @@ I simulated a few computing operations that are abstractly created in the interf
 I also created an abstract factory to facilitate implementation of the computers.
 
 The abstract classes are then implemented using concrete classes in the concrete
-module. Thus, there is a control. The main module, entrypoint, needs to import
-only the concrete implementation of the factory (this break of the DIP principle
-in practice is expected and sometimes unavoidable).
+module. The main module, entrypoint, needs to import only the factory concrete
+implementation but the main function depends only on the abstract computer class.
+This is called dependency injection and is acceptable as far is DIP.
 
 ### Running the module
 

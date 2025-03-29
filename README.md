@@ -1,6 +1,9 @@
 # SOLID principles implementation
 This is a repo used to practice and visualize the SOLID principles in software development.
 
+The main reference for this repo will be [Martin, R. C. (2018). Clean Architecture:
+A Craftsman's Guide to Software Structure and Design Pearson Education Inc](amzn.to/442LA9R)
+
 ## Dependency Inversion Principle (DIP)
 
 ### Description
